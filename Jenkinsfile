@@ -2,13 +2,13 @@ pipeline {
     agent any
     environment {
         SONARQUBE_SERVER = 'http://192.168.1.18:9000' // Update with actual SonarQube IP
-        SONARQUBE_AUTH_TOKEN = credentials('sqa_f5125389d820feb78c7858ce294a5987d348856c') // SonarQube token stored in Jenkins credentials
+        SONARQUBE_AUTH_TOKEN = credentials('squ_c32fac78407f0a96834cc765d8f07307bfe9f9e7') // SonarQube token stored in Jenkins credentials
         SNYK_TOKEN = credentials('b8a35b22-ecd3-4f69-bb9f-0636f6aac5f8') // Snyk API token stored in Jenkins credentials
     }
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/bkimminich/juice-shop.git'
+                git 'https://github.com/CharanRayudu/juice-shop.git'
             }
         }
         
