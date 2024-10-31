@@ -76,7 +76,8 @@ pipeline {
     
     post {
         always {
-            node {
+            agent any
+            steps {
                 script {
                     // Clean up Docker containers and images to free space after the build
                     sh 'docker-compose down'
