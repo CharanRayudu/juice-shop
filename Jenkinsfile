@@ -7,9 +7,8 @@ pipeline {
     }
     stages {
         stage('Checkout') {
-                steps {
-                    git 'https://github.com/CharanRayudu/juice-shop.git'
-                }
+            steps {
+                git 'https://github.com/CharanRayudu/juice-shop.git'
             }
         }
         
@@ -77,11 +76,11 @@ pipeline {
     
     post {
         always {
-                script {
-                    // Clean up Docker containers and images to free space after the build
-                    sh 'docker-compose down'
-                    sh 'docker system prune -f'
-                }
+            script {
+                // Clean up Docker containers and images to free space after the build
+                sh 'docker-compose down'
+                sh 'docker system prune -f'
             }
         }
+    }
 }
