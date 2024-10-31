@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        SONARQUBE_SERVER = 'http://192.168.1.18:9000' // Update with actual SonarQube IP
-        SONARQUBE_AUTH_TOKEN = credentials('squ_c32fac78407f0a96834cc765d8f07307bfe9f9e7') // SonarQube token stored in Jenkins credentials
-        SNYK_TOKEN = credentials('b8a35b22-ecd3-4f69-bb9f-0636f6aac5f8') // Snyk API token stored in Jenkins credentials
+        SONARQUBE_SERVER = 'http://192.168.1.18:9000'
+        SONARQUBE_AUTH_TOKEN = credentials('squ_c32fac78407f0a96834cc765d8f07307bfe9f9e7')
+        SNYK_TOKEN = credentials('b8a35b22-ecd3-4f69-bb9f-0636f6aac5f8')
     }
     stages {
         stage('Checkout') {
@@ -76,10 +76,12 @@ pipeline {
     
     post {
         always {
-            script {
-                // Clean up Docker containers and images to free space after the build
-                sh 'docker-compose down'
-                sh 'docker system prune -f'
+            node {
+                script {
+                    // Clean up Docker containers and images to free space after the build
+                    sh 'docker-compose down'
+                    sh 'docker system prune -f'
+                }
             }
         }
     }
