@@ -7,8 +7,10 @@ pipeline {
     }
     stages {
         stage('Checkout') {
-            steps {
-                git 'https://github.com/CharanRayudu/juice-shop.git'
+            node('master') {
+                steps {
+                    git 'https://github.com/CharanRayudu/juice-shop.git'
+                }
             }
         }
         
