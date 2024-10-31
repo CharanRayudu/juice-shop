@@ -72,14 +72,23 @@ pipeline {
                 }
             }
         }
+        
+        // Dedicated cleanup stage at the end
+        stage('Cleanup') {
+            steps {
+                script {
+                    // Clean up Docker containers and images to free space after the build
+                    sh 'docker-compose down'
+                    sh 'docker system prune -f'
+                }
+            }
+        }
     }
     
     post {
         always {
             script {
-                // Clean up Docker containers and images to free space after the build
-                sh 'docker-compose down'
-                sh 'docker system prune -f'
+                echo "Pipeline completed with cleanup."
             }
         }
     }
