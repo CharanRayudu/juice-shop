@@ -49,10 +49,7 @@ pipeline {
             steps {
                 script {
                     // Run OWASP ZAP to scan the deployed app
-                    sh """
-                    docker run -v $(pwd):/zap/wrk/:rw -t zaproxy/zap-stable zap-baseline.py \
-                      -t http://localhost:3000 -r zap_report.html
-                    """
+                    sh 'docker run -v $(pwd):/zap/wrk/:rw -t zaproxy/zap-stable zap-baseline.py -t http://localhost:3000 -r zap_report.html'
                 }
                 archiveArtifacts artifacts: 'zap_report.html', allowEmptyArchive: true
             }
