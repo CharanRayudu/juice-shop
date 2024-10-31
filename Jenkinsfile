@@ -7,7 +7,6 @@ pipeline {
     }
     stages {
         stage('Checkout') {
-            node('master') {
                 steps {
                     git 'https://github.com/CharanRayudu/juice-shop.git'
                 }
@@ -78,7 +77,6 @@ pipeline {
     
     post {
         always {
-            node {
                 script {
                     // Clean up Docker containers and images to free space after the build
                     sh 'docker-compose down'
@@ -87,4 +85,3 @@ pipeline {
             }
         }
     }
-}
