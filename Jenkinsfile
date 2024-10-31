@@ -76,13 +76,10 @@ pipeline {
     
     post {
         always {
-            agent any
-            steps {
-                script {
-                    // Clean up Docker containers and images to free space after the build
-                    sh 'docker-compose down'
-                    sh 'docker system prune -f'
-                }
+            script {
+                // Clean up Docker containers and images to free space after the build
+                sh 'docker-compose down'
+                sh 'docker system prune -f'
             }
         }
     }
